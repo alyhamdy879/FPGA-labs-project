@@ -4,7 +4,7 @@
 [![Toolchain: EDA/FPGA](https://img.shields.io/badge/Tools-Questasim%20%7C%20Vivado-orange.svg)]()
 [![Status: Complete](https://img.shields.io/badge/Status-Labs%20Completed-brightgreen.svg)]()
 
-This repository contains the complete collection of RTL models, Finite State Machines (FSMs), memory architectures, and testbenches developed throughout the FPGA Course. The labs are organized chronologically by module complexity and topic domain.
+This repository contains the complete collection of RTL models, Finite State Machines (FSMs), memory architectures, and testbenches developed throughout the FPGA Course. The labs are organized chronologically 
 
 ---
 
