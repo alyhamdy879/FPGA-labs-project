@@ -1,0 +1,60 @@
+module parity_test;
+
+  reg  clk;
+  reg  rst;
+  reg  serial_in;
+  wire parity_out;
+  wire [7:0] sin;
+
+  stream_parity_gen p1 ( 
+    .clk        ( clk        ),
+    .rst        ( rst        ),
+    .serial_in  ( serial_in  ),
+    .sin        ( sin        ),
+    .parity_out ( parity_out ) 
+  );
+
+  // Expect task remains unchanged
+  task expect;
+    input exp_out;
+    if (parity_out !== exp_out) begin
+      $display("TEST FAILED");
+      $display("At time %0d rst=%b sin=%b parity_out=%b", $time, rst, sin, parity_out);
+      $display("parity_out should be %b", exp_out);
+      $finish;
+    end
+    else begin
+      $display("At time %0d rst=%b sin=%b parity_out=%b", $time, rst, sin, parity_out);
+    end
+  endtask
+
+  // Task to send 8 bits serially MSB first
+  task sen(input [7:0] d);
+    integer i;
+    begin
+        for (i = 7; i >= 0; i = i - 1) begin
+            serial_in = d[i]; 
+            @(posedge clk);               
+        end
+        serial_in = 0; 
+    end
+  endtask
+
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+ 
+  initial begin
+    rst = 1; serial_in = 0;
+    @(negedge clk);
+    rst = 0; 
+    sen(8'b10101010); @(posedge clk);   expect(0);
+    sen(8'b10101011); @(posedge clk);   expect(1);    
+    sen(8'b10101111); @(posedge clk);   expect(0);
+    sen(8'b10101000); @(posedge clk);   expect(1);
+    
+    $display("SUCCESS: ALL TESTS PASSED");
+    $finish;
+  end
+
+endmodule
