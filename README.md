@@ -8,109 +8,168 @@ This repository contains the complete collection of RTL models, Finite State Mac
 
 ---
 
-## 📅 Lab Modules by Date & Sequence
+## 📅 Lab Modules by Date & Sequence & Daily Module Progression
 
-### 🧪 Lab 1: Basic Combinational & Sequential Elements
-*Focus: Fundamental flip-flops, tristate buffers, and parameterized registers.*
-* **`my_dff.v` & `top_module.v`**: Basic D Flip-Flop instantiation and structural cascade[cite: 3].
-* **`driver.v` & `driver_test.v`**: Parameterized tri-state bus driver with output enable control (`data_en`)[cite: 1, 8].
-* **`register.v` & `register_test.v`**: Synchronous load register with asynchronous active-high reset[cite: 2, 6].
-* **`multiplexor_test.v`**: Verification testbench for parameterized 2-to-1 data multiplexers[cite: 7].
+### 🗓️ July 09, 2026
+* **`piso.v`**: Parallel-In Serial-Out shift register.
+* **`shift_sipo+alu.v`**: Integrated serial shift register feeding arithmetic logic module.
 
 ---
 
-### 🧪 Lab 2: Arithmetic Units & Wildcard Comparisons
-*Focus: Arithmetic logic design and simulation behaviors of Verilog wildcard matching.*
-* **`alu.v` & `alu_test.v`**: Parameterized 8-bit Arithmetic Logic Unit (ADD, AND, XOR, Pass-Through, and `a_is_zero` flag)[cite: 9, 10].
-* **`casez_example.v`**: Priority encoder modeling using `casez` (high-impedance `z` wildcards)[cite: 17].
-* **`casex_example.v`**: Priority encoder modeling using `casex` (`x`/`z` wildcards)[cite: 20].
-* **`XZ_test.v`**: Testbench demonstrating hardware synthesis risks and simulation differences between `casex` and `casez`[cite: 18].
+### 🗓️ July 11, 2026
+* **`shift_sipo.v`**: Serial-In Parallel-Out shift register module.
+* **`driver_test.v`**: Testbench for the tri-state bus driver.
+* **`alu_test.v`**: Testbench verifying arithmetic and bitwise logic operations.
+* **`alu.v`**: Parameterized 8-bit Arithmetic Logic Unit with zero flag detection.
+* **`driver.v`**: Bus driver with tri-state output control (`data_en`).
 
 ---
 
-### 🧪 Lab 3: Memory Subsystems & Bus Operations
-*Focus: RAM design, bidirectional tri-state buses, and self-checking testbenches.*
-* **`memory.sv`**: Parameterized RAM module (default 32x8) with a bidirectional `inout data` bus driven by `rd`/`wr` signals[cite: 12].
-* **`memory_test.v` / `memory_test_edit.v` / `memory_test_taskedit.v`**: Automated testbenches validating memory write and read tasks across ascending and descending address spaces[cite: 13, 14, 31].
+### 🗓️ July 12, 2026
+* **`multiplexor_test.v`**: Verification suite for 2-to-1 data multiplexer.
+* **`lab 4 (ram+piso+sipo+alu).sv`**: Combined sub-system integration incorporating RAM, shift registers, and ALU.
+* **`register_test.v`**: Testbench verifying synchronous register loading and resetting.
+* **`controller_test.v`**: Microcode instruction CPU controller testbench.
 
 ---
 
-### 🧪 Lab 4: Multi-Style Counter Design & Functional Encapsulation
-*Focus: Structural vs. Behavioral vs. Gate-Level modeling paradigms.*
-* **`counter.v` & `counter_test.v`**: Parameterized up-counter with synchronous load and enable controls[cite: 16, 19].
-* **`counter_func.v`**: Up-counter utilizing Verilog `function` encapsulation for next-state logic[cite: 15].
-* **`counter_Behavioral.v`**: High-level behavioral modeling of a 2-bit Up/Down counter[cite: 23].
-* **`counter_Structural.v`**: Structural 2-bit Up/Down counter using instantiated D-FFs and next-state equations[cite: 26].
-* **`counter_gate_level.v`**: Boolean logic gate-level representation of a 2-bit Up/Down counter[cite: 27].
+### 🗓️ July 13, 2026
+* **`controller.v`**: CPU controller FSM decoding 8 instruction phases.
+* **`module shift.v`**: Structural D flip-flop cascade module.
+* **`register.v`**: Parameterized synchronous load register with asynchronous reset.
+* **`casex_example.v`**: Priority encoder using `casex` wildcard states.
 
 ---
 
-### 🧪 Lab 5: Finite State Machines & Microcode Controllers
-*Focus: Multi-phase instruction decoders, Moore vs. Mealy machines, and segment coding styles.*
-* **`controller.v` & `controller_test.v`**: CPU Control Unit FSM decoding 8 instructions (`HLT`, `SKZ`, `ADD`, `AND`, `XOR`, `LDA`, `STO`, `JMP`) over 8 phase steps[cite: 4, 5].
-* **`fsm.v`, `fsm_multi.sv` & `fsm_red.sv`**: FSM implementations comparing 2-segment vs. 3-segment SystemVerilog architectures[cite: 24, 28, 29].
-* **`fsm_test.v`**: Verification environment for multi-segment FSM logic[cite: 25].
-* **`rising_edge_moore.v`**: Single-cycle tick edge detector implemented using Moore state logic[cite: 21].
-* **`rising_edge_mealy.v`**: Edge detector implemented using Mealy state logic[cite: 22].
-* **`rising_edge_test.v`**: Testbench comparing Moore vs. Mealy response timing and glitch behavior[cite: 35].
+### 🗓️ July 14, 2026
+* **`counter_test.v`**: Up-counter testbench verifying load/enable sequence logic.
+* **`XZ_test.v`**: Testbench comparing simulation differences between `casex` and `casez`.
+* **`casez_example.v`**: Priority encoder using `casez` high-impedance wildcard logic.
+* **`counter.v`**: Parameterized up-counter with load and enable inputs.
+* **`counter_func.v`**: Up-counter encapsulating next-state evaluation inside Verilog functions.
 
 ---
 
-### 🧪 Lab 6: Sequence Detection & Pattern Recognition
-*Focus: FSM pattern matching algorithms.*
-* **`seq_det.v` (`seq_det_non` & `seq_det_over`)**: Sequence detectors identifying the bit pattern `110101` in non-overlapping and overlapping modes[cite: 32].
+### 🗓️ July 15, 2026
+* **`memory_test_taskedit.v`**: Modular memory testbench utilizing task abstractions.
+* **`memory_test_edit.v`**: Updated self-checking memory testbench.
+* **`memory.sv`**: Parameterized RAM with bidirectional `inout` data bus.
+* **`stream_parity_gen.v`**: Dynamic serial stream parity generator.
+* **`stream_parity_gen_gernate.v`**: Parameterized stream parity generator utilizing `generate` loops.
 
 ---
 
-### 🧪 Lab 7: Digital Signal Processing & Hardware Interfaces
-*Focus: Mechanical switch debouncing, streaming parity, and generate loops.*
-* **`debouncer.v` & `debouncer_tb.v`**: Mechanical button debouncer filtering input contact bounce using an internal tick counter[cite: 33, 34].
-* **`stream_parity_gen.v` / `stream_parity_gen_ddd.v`**: Streaming serial-in parity generators using reduction XOR functions[cite: 11, 30].
-* **`stream_parity_gen_gernate.v`**: Parameterized parity generator constructed via Verilog `generate` loops[cite: 30].
-* **`parity_test.v`**: Comprehensive automated testbench validating parity output across 255 data values[cite: 36].
+### 🗓️ July 16, 2026
+* **`fsm.v`**: Standard 2-segment Finite State Machine implementation.
+* **`fsm_red.sv`**: Reduced-state SystemVerilog FSM.
 
 ---
 
-## 📂 Repository Directory Structure
+### 🗓️ July 18, 2026
+* **`Counter_Lab.pdf` & `Final_Project_Announcement.pdf`**: Lab assignment specifications and project criteria.
 
-```text
-.
-├── alu.v                       # Lab 2: Arithmetic Logic Unit
-├── alu_test.v                  # Lab 2: ALU Testbench
-├── casez_example.v             # Lab 2: Casez Wildcard Encoder
-├── casex_example.v             # Lab 2: Casex Wildcard Encoder
-├── controller.v                # Lab 5: Microcode CPU Controller
-├── controller_test.v           # Lab 5: Controller Phase Testbench
-├── counter.v                   # Lab 4: Parameterized Up-Counter
-├── counter_Behavioral.v        # Lab 4: Behavioral 2-bit Up/Down Counter
-├── counter_func.v              # Lab 4: Function-based Counter
-├── counter_gate_level.v        # Lab 4: Gate-Level Up/Down Counter
-├── counter_Structural.v        # Lab 4: Structural D-FF Up/Down Counter
-├── counter_test.v              # Lab 4: Counter Testbench
-├── debouncer.v                 # Lab 7: Hardware Debouncer Circuit
-├── debouncer_tb.v              # Lab 7: Debouncer Noise Testbench
-├── driver.v                    # Lab 1: Tri-State Bus Driver
-├── driver_test.v               # Lab 1: Bus Driver Testbench
-├── fsm.v                       # Lab 5: 2-Segment FSM
-├── fsm_multi.sv                # Lab 5: 3-Segment SystemVerilog FSM
-├── fsm_red.sv                  # Lab 5: Reduced FSM
-├── fsm_test.v                  # Lab 5: FSM Testbench
-├── memory.sv                   # Lab 3: RAM with Bidirectional Inout Bus
-├── memory_test.v               # Lab 3: Memory Verification Testbench
-├── multiplexor_test.v          # Lab 1: Mux Testbench
-├── my_dff.v                    # Lab 1: D Flip-Flop Component
-├── register.v                  # Lab 1: Load Register
-├── register_test.v             # Lab 1: Register Testbench
-├── rising_edge_mealy.v         # Lab 5: Mealy Edge Detector
-├── rising_edge_moore.v         # Lab 5: Moore Edge Detector
-├── rising_edge_test.v          # Lab 5: Edge Detector Comparative Testbench
-├── seq_det.v                   # Lab 6: Overlapping & Non-Overlapping Sequence Detectors
-├── stream_parity_gen.v         # Lab 7: Serial Stream Parity Generator
-├── stream_parity_gen_ddd.v     # Lab 7: Shift-Register Parity Generator
-├── stream_parity_gen_gernate.v # Lab 7: Generate Loop Parity Generator
-├── parity_test.v               # Lab 7: Parity Testbench
-├── top_module.v                # Lab 1: Structural D-FF Shift Register
-└── XZ_test.v                   # Lab 2: Casez vs Casex Simulation Testbench
+---
+
+### 🗓️ July 19, 2026
+* **`counter_gate_level.v`**: Primitive gate-level implementation of 2-bit Up/Down counter.
+* **`counter_Structural.v`**: Structural D Flip-Flop instantiation of Up/Down counter.
+* **`fsm_test.v`**: Testbench verifying FSM multi-segment transition outputs.
+* **`fsm_multi.sv`**: 3-segment SystemVerilog FSM architecture.
+* **`counter_Behavioral.v`**: Behavioral high-level 2-bit Up/Down counter.
+* **`rising_edge_mealy.v`**: Mealy-type rising edge detector FSM.
+* **`rising_edge_moore.v`**: Moore-type rising edge detector FSM.
+* **`parity_test.v`**: Dynamic verification environment for parity logic across 255 values.
+* **`rising_edge_test.v`**: Comparative testbench for Moore vs. Mealy edge detectors.
+
+---
+
+### 🗓️ July 20, 2026
+* **`debouncer.v`**: Mechanical switch debouncer using internal tick counters.
+* **`debouncer_tb.v`**: Bounce injection testbench verifying debouncer noise rejection.
+
+---
+
+### 🗓️ July 21, 2026
+* **`seq_det.v`**: Overlapping & non-overlapping sequence detectors (`110101`).
+* **`memory_test.v`**: Master verification environment for memory subsystems.
+
+---
+
+### 🗓️ July 22, 2026
+* **`parking_system_tb.v.bak`**: Backup testbench for ultrasonic parking sensor processing.
+
+---
+
+### 🗓️ July 23, 2026
+* **`timing_paths.v` & `timing_paths.xdc`**: Verilog module and Xilinx Design Constraints file for timing analysis.
+* **`Advanced_Parking_System.v`**: Hardware module calculating proximity zones via ultrasonic sensor signals.
+* **`top_mod_ECUTemp.v`**: Top-level module integrating ECU engine temperature monitoring logic.
+
+---
+
+### 🗓️ July 24, 2026
+* **`Smart_RPM_Limiter.v` & `tb_Smart_RPM_Limiter.v`**: Adaptive engine RPM safety cutoff module and testbench.
+* **`Active_Spoiler_System.v` & `tb_Active_Spoiler_System.v`**: Vehicle speed-driven active spoiler angle controller and testbench.
+* **`tb_Traction_ABS_System.v` & `Traction_ABS_System.v`**: Traction & ABS control module and testbench.
+* **`tb_Drive_Mode_Controller.v` & `Drive_Mode_Controller.v`**: Vehicle drive-mode selector (Eco/Sport/Comfort) and testbench.
+* **`tb_parking_system.v`**: Automated testbench for the Advanced Parking System module.
+
+---
+
+## 🧠 Testbench Architecture & Verification Mindset
+
+Every testbench in this repository was constructed using a structured hardware verification methodology. Below is the architectural thought process behind each testbench:
+
+### 1. Direct Signal Driver & Tri-State Drivers (`driver_test.v`)
+* **Thinking Process:** A tri-state bus driver must drive high-impedance (`Z`) when disabled and mirror inputs when enabled. I built an explicit `expect` task to assert high impedance (`8'hZZ`) on `data_en = 0` and verify zero bus contention when enabled.
+
+### 2. Operational Logic & Edge Flags (`alu_test.v`)
+* **Thinking Process:** I aimed to test both arithmetic accuracy and status flags simultaneously. The testbench steps through every opcode (`ADD`, `AND`, `XOR`, `PASS`) with edge-case vectors (e.g., `in_a = 0` to explicitly verify that the zero flag `a_is_zero` triggers reliably).
+
+### 3. State & Phase Timing Decoders (`controller_test.v`)
+* **Thinking Process:** Microcode execution spans multiple clock phases (`phase 0` to `7`). I designed the testbench to sweep phase states sequentially for each CPU instruction (`HLT`, `SKZ`, `ADD`, `LDA`, etc.), confirming that control bus signals (`sel`, `rd`, `ld_ir`, `wr`, `inc_pc`) match expected bitmasks at exact clock cycles.
+
+### 4. Sequential Memory Elements (`register_test.v` & `counter_test.v`)
+* **Thinking Process:** For sequential logic, timing relative to the clock edge is critical. I drove data changes at the negative clock edge (`@(negedge clk)`) to establish stable setup and hold times, ensuring synchronous loading (`load = 1`) and asynchronous override on reset (`rst = 1`).
+
+### 5. Memory Bus & Bidirectional Testing (`memory_test.v`, `memory_test_edit.v`, `memory_test_taskedit.v`)
+* **Thinking Process:** RAM verification requires preventing bus collisions on `inout` lines. I modularized the testbench using `write` and `read` tasks:
+  * **Write Task:** Drive `rdata` onto the data bus and pulse `wr`.
+  * **Read Task:** Release `rdata` to high-impedance (`'bz`), enable `rd`, and sample the data bus against expected memory contents over full ascending/descending memory address sweeps.
+
+### 6. Wildcard Synthesis Risk Analysis (`XZ_test.v`)
+* **Thinking Process:** `casex` treats unknown bits (`X`) as don't-cares, which can hide design flaws during simulation. I built a dual-instantiation testbench running the exact same inputs through both `casez_example` and `casex_example` to observe output discrepancies under `X` and `Z` injection.
+
+### 7. Finite State Machine Transitions (`fsm_test.v`)
+* **Thinking Process:** FSM verification requires checking valid transitions and illegal state recovery. The testbench systematically cycles inputs `a` and `b` through reset and active states to ensure outputs `y0` and `y1` comply with Moore/Mealy specifications without state locking.
+
+### 8. Async Response & Glitch Immunity (`rising_edge_test.v`)
+* **Thinking Process:** Mealy outputs respond asynchronously to input changes, whereas Moore outputs wait for the clock edge. I injected high-frequency glitches (narrow pulses under half a clock period) into `level` to compare glitch propagation in `rising_edge_mealy` versus `rising_edge_moore`.
+
+### 9. Noise Filtering & Real-World Inputs (`debouncer_tb.v`)
+* **Thinking Process:** Physical switches bounce back and forth before settling. I simulated contact bounce by toggling `sw` rapidly back and forth between `0` and `1` within a 30ns window. The testbench verifies that `db` remains stable until the input stays steady across the complete counter threshold (`m_tick`).
+
+### 10. Automated Stream & Math Verification (`parity_test.v`)
+* **Thinking Process:** Manually typing test vectors for streaming parity is inefficient. I built an automated loop (`all(255)`) that sends numbers 1 through 255 bit-by-bit serially using a helper `sen` task, automatically computing the expected parity via bitwise reduction (`^i`) and matching it against `parity_out`.
+
+### 11. Automotive Subsystem Verification (`tb_Smart_RPM_Limiter.v`, `tb_Active_Spoiler_System.v`, `tb_Traction_ABS_System.v`, `tb_Drive_Mode_Controller.v`, `tb_parking_system.v`)
+* **Thinking Process:** Automotive ECUs govern critical physical systems. Testbenches simulate physical vehicle states (e.g., wheel slip ratios, vehicle speeds, engine temperature thresholds, and ultrasonic sensor echo durations) to verify safety cutoffs, actuator outputs, and mode transitions under extreme conditions.
+
+---
+
+## 🚀 Running Simulations
+
+Execute any testbench using **Icarus Verilog** or **ModelSim**:
+
+```bash
+# Example 1: Run Automotive Parking System Testbench
+iverilog -o parking_sim.out Advanced_Parking_System.v tb_parking_system.v
+vvp parking_sim.out
+
+# Example 2: Run Debouncer Testbench and View Waveform
+iverilog -o debouncer_sim.out debouncer.v debouncer_tb.v
+vvp debouncer_sim.out
+gtkwave debouncer_tb.vcd
 ├── stream_parity_gen_gernate.v# Parameterized parity generator
 ├── parity_test.v             # Parity generator testbench
 ├── top_module.v              # Structural D-FF shift register top
