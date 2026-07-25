@@ -10,50 +10,48 @@ This repository contains the complete collection of RTL models, Finite State Mac
 
 ## 📅 Lab Modules by Date & Sequence & Daily Module Progression
 
-### 🗓️ July 09, 2026
+### 🗓️ July 09, 2026 (lab 4)
 * **`piso.v`**: Parallel-In Serial-Out shift register.
 * **`shift_sipo+alu.v`**: Integrated serial shift register feeding arithmetic logic module.
-
+* **`shift_sipo.v`**: Serial-In Parallel-Out shift register module.
+* **`lab 4 (ram+piso+sipo+alu).sv`**: Combined sub-system integration incorporating RAM, shift registers, and ALU.
 ---
 
 ### 🗓️ July 11, 2026
-* **`shift_sipo.v`**: Serial-In Parallel-Out shift register module.
-* **`driver_test.v`**: Testbench for the tri-state bus driver.
-* **`alu_test.v`**: Testbench verifying arithmetic and bitwise logic operations.
 * **`alu.v`**: Parameterized 8-bit Arithmetic Logic Unit with zero flag detection.
+* **`alu_test.v`**: Testbench verifying arithmetic and bitwise logic operations.
 * **`driver.v`**: Bus driver with tri-state output control (`data_en`).
-
+* **`driver_test.v`**: Testbench for the tri-state bus driver.
+* **`multiplexor_test.v`**: 2-to-1 data multiplexer.
+* **`multiplexor_test.v`**: Verification suite for 2-to-1 data multiplexer.
 ---
 
 ### 🗓️ July 12, 2026
-* **`multiplexor_test.v`**: Verification suite for 2-to-1 data multiplexer.
-* **`lab 4 (ram+piso+sipo+alu).sv`**: Combined sub-system integration incorporating RAM, shift registers, and ALU.
+* **`controller.v`**: CPU controller FSM decoding 8 instruction phases.
+* **`module shift.v`**: Structural D flip-flop cascade module.
 * **`register_test.v`**: Testbench verifying synchronous register loading and resetting.
 * **`controller_test.v`**: Microcode instruction CPU controller testbench.
 
 ---
 
 ### 🗓️ July 13, 2026
-* **`controller.v`**: CPU controller FSM decoding 8 instruction phases.
-* **`module shift.v`**: Structural D flip-flop cascade module.
+* **`casez_example.v`**: Priority encoder using `casez` high-impedance wildcard logic.
 * **`register.v`**: Parameterized synchronous load register with asynchronous reset.
 * **`casex_example.v`**: Priority encoder using `casex` wildcard states.
-
+* **`XZ_test.v`**: Testbench comparing simulation differences between `casex` and `casez`.
 ---
 
 ### 🗓️ July 14, 2026
 * **`counter_test.v`**: Up-counter testbench verifying load/enable sequence logic.
-* **`XZ_test.v`**: Testbench comparing simulation differences between `casex` and `casez`.
-* **`casez_example.v`**: Priority encoder using `casez` high-impedance wildcard logic.
 * **`counter.v`**: Parameterized up-counter with load and enable inputs.
 * **`counter_func.v`**: Up-counter encapsulating next-state evaluation inside Verilog functions.
-
+* **`memory_test_edit.v`**: Updated self-checking memory testbench.
+* **`memory.sv`**: Parameterized RAM with bidirectional `inout` data bus.
+* **`memory_test.v`**: Master verification environment for memory subsystems.
 ---
 
 ### 🗓️ July 15, 2026
 * **`memory_test_taskedit.v`**: Modular memory testbench utilizing task abstractions.
-* **`memory_test_edit.v`**: Updated self-checking memory testbench.
-* **`memory.sv`**: Parameterized RAM with bidirectional `inout` data bus.
 * **`stream_parity_gen.v`**: Dynamic serial stream parity generator.
 * **`stream_parity_gen_gernate.v`**: Parameterized stream parity generator utilizing `generate` loops.
 
@@ -62,19 +60,14 @@ This repository contains the complete collection of RTL models, Finite State Mac
 ### 🗓️ July 16, 2026
 * **`fsm.v`**: Standard 2-segment Finite State Machine implementation.
 * **`fsm_red.sv`**: Reduced-state SystemVerilog FSM.
-
----
-
-### 🗓️ July 18, 2026
-* **`Counter_Lab.pdf` & `Final_Project_Announcement.pdf`**: Lab assignment specifications and project criteria.
+* **`fsm_test.v`**: Testbench verifying FSM multi-segment transition outputs.
+* **`fsm_multi.sv`**: 3-segment SystemVerilog FSM architecture.
 
 ---
 
 ### 🗓️ July 19, 2026
 * **`counter_gate_level.v`**: Primitive gate-level implementation of 2-bit Up/Down counter.
 * **`counter_Structural.v`**: Structural D Flip-Flop instantiation of Up/Down counter.
-* **`fsm_test.v`**: Testbench verifying FSM multi-segment transition outputs.
-* **`fsm_multi.sv`**: 3-segment SystemVerilog FSM architecture.
 * **`counter_Behavioral.v`**: Behavioral high-level 2-bit Up/Down counter.
 * **`rising_edge_mealy.v`**: Mealy-type rising edge detector FSM.
 * **`rising_edge_moore.v`**: Moore-type rising edge detector FSM.
@@ -86,34 +79,12 @@ This repository contains the complete collection of RTL models, Finite State Mac
 ### 🗓️ July 20, 2026
 * **`debouncer.v`**: Mechanical switch debouncer using internal tick counters.
 * **`debouncer_tb.v`**: Bounce injection testbench verifying debouncer noise rejection.
-
----
-
-### 🗓️ July 21, 2026
 * **`seq_det.v`**: Overlapping & non-overlapping sequence detectors (`110101`).
-* **`memory_test.v`**: Master verification environment for memory subsystems.
 
 ---
 
 ### 🗓️ July 22, 2026
-* **`parking_system_tb.v.bak`**: Backup testbench for ultrasonic parking sensor processing.
-
----
-
-### 🗓️ July 23, 2026
 * **`timing_paths.v` & `timing_paths.xdc`**: Verilog module and Xilinx Design Constraints file for timing analysis.
-* **`Advanced_Parking_System.v`**: Hardware module calculating proximity zones via ultrasonic sensor signals.
-* **`top_mod_ECUTemp.v`**: Top-level module integrating ECU engine temperature monitoring logic.
-
----
-
-### 🗓️ July 24, 2026
-* **`Smart_RPM_Limiter.v` & `tb_Smart_RPM_Limiter.v`**: Adaptive engine RPM safety cutoff module and testbench.
-* **`Active_Spoiler_System.v` & `tb_Active_Spoiler_System.v`**: Vehicle speed-driven active spoiler angle controller and testbench.
-* **`tb_Traction_ABS_System.v` & `Traction_ABS_System.v`**: Traction & ABS control module and testbench.
-* **`tb_Drive_Mode_Controller.v` & `Drive_Mode_Controller.v`**: Vehicle drive-mode selector (Eco/Sport/Comfort) and testbench.
-* **`tb_parking_system.v`**: Automated testbench for the Advanced Parking System module.
-
 ---
 
 ## 🧠 Testbench Architecture & Verification Mindset
@@ -156,6 +127,7 @@ Every testbench in this repository was constructed using a structured hardware v
 * **Thinking Process:** Automotive ECUs govern critical physical systems. Testbenches simulate physical vehicle states (e.g., wheel slip ratios, vehicle speeds, engine temperature thresholds, and ultrasonic sensor echo durations) to verify safety cutoffs, actuator outputs, and mode transitions under extreme conditions.
 
 ---
+
 ## 🏎️ Capstone Project: Advanced Automotive ECU
 
 ### Objective
@@ -190,6 +162,7 @@ This capstone project applies digital logic to modern vehicle engineering. It in
 ### Verification
 Every subsystem is paired with an exhaustive Verilog Testbench (`tb_*.v`) injecting realistic edge cases—such as sudden traction loss, varied echo pulse widths, and shifting drive modes under heavy throttle—verified successfully in simulation[cite: 59, 60, 61, 62, 63, 65].
 
+---
 
 ## 🚀 Running Simulations
 
