@@ -156,6 +156,40 @@ Every testbench in this repository was constructed using a structured hardware v
 * **Thinking Process:** Automotive ECUs govern critical physical systems. Testbenches simulate physical vehicle states (e.g., wheel slip ratios, vehicle speeds, engine temperature thresholds, and ultrasonic sensor echo durations) to verify safety cutoffs, actuator outputs, and mode transitions under extreme conditions.
 
 ---
+## 🏎️ Capstone Project: Advanced Automotive ECU
+
+### Objective
+This capstone project applies digital logic to modern vehicle engineering. It integrates four distinct vehicle subsystems into a single, non-blocking FPGA architecture to manage safety, fuel economy, and real-time performance tuning[cite: 57, 65].
+
+### Subsystems Implemented
+
+1. **Active Spoiler System (Aerodynamics)** 🪽
+   * Continuously monitors vehicle speed and brake pedal status to adjust the rear spoiler via a generated PWM signal (`spoiler_pwm`)[cite: 54, 57].
+   * Transitions between angles: `CLOSED` (Speed < 80), `CRUISE` (Speed > 80), `TRACK` (Speed > 150), and `AIRBRAKE` (Max angle when braking above city speeds)[cite: 54, 57].
+   * Includes a sequential smoothing timer to model realistic mechanical actuator deployment without sudden jerks[cite: 54].
+
+2. **Advanced Parking System (Proximity)** 🅿️
+   * Analyzes an ultrasonic `echo_pulse` width to determine obstacle distance, categorizing it into predefined thresholds (`ZONE_MID`, `ZONE_CLOSE`, `ZONE_DANGER`)[cite: 55, 57].
+   * Drives visual indicators (`led_green`, `led_yellow`, `led_red`) and modulates a `buzzer_out` frequency that toggles faster as the obstacle approaches[cite: 55].
+
+3. **Drive Mode Controller (Performance)** ⚙️
+   * Dynamically remaps throttle inputs to an electric motor's PWM duty cycle based on the active mode (`Eco`, `Normal`, `Sport`, `Track`)[cite: 56, 57].
+   * Features a hardware rate-limiter (`smooth_timer`) that protects the 200V DC motor from violent current spikes during aggressive throttle changes[cite: 56, 65].
+
+4. **Smart RPM Limiter (Engine Protection)** 🛑
+   * Implements real-time hardware comparators against engine RPM thresholds[cite: 58, 65].
+   * **Soft Cut (9,000 RPM):** Triggers a `spark_retard` warning signal[cite: 58].
+   * **Hard Cut (10,000 RPM):** Immediately drops a `fuel_cut` signal to halt acceleration[cite: 58].
+   * **Launch Control:** Detects when the vehicle is stationary (Speed=0), brakes are applied, and throttle is full, holding the RPM precisely at 4,000 via a controlled spark retard[cite: 58].
+
+5. **Traction and ABS System (Safety)** 🛞
+   * Compares `front_wheel_speed` and `rear_wheel_speed` to calculate mechanical slip[cite: 57, 63].
+   * **ABS (Anti-lock Braking):** If braking is active and slip exceeds `MAX_SLIP` (15), it forces the motor PWM to 0 and rapidly pulses the `abs_brake_pulse` signal[cite: 63].
+   * **TCS (Traction Control):** If accelerating and the rear wheels lose grip, it forcefully bit-shifts (`>> 1`) the motor's PWM input, instantly halving engine torque until traction is restored[cite: 63].
+
+### Verification
+Every subsystem is paired with an exhaustive Verilog Testbench (`tb_*.v`) injecting realistic edge cases—such as sudden traction loss, varied echo pulse widths, and shifting drive modes under heavy throttle—verified successfully in simulation[cite: 59, 60, 61, 62, 63, 65].
+
 
 ## 🚀 Running Simulations
 
